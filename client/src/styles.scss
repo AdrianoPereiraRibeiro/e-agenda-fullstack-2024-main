@@ -1,0 +1,44 @@
+@import "bootstrap/scss/bootstrap-reboot";
+@import "bootstrap/scss/bootstrap-grid";
+@import "bootstrap/scss/bootstrap-utilities";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-error {
+  font-size: 16px;
+
+  margin-top: 5px;
+}
+
+.notificacao-sucesso {
+  --mdc-snackbar-container-color: #ffabf3;
+  --mdc-snackbar-supporting-text-color: #131313;
+  --mat-snack-bar-button-color: #131313;
+}
+
+.notificacao-erro {
+  --mdc-snackbar-container-color: #dd4f4f;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+  --mat-snack-bar-button-color: #ffffff;
+}
+
+.card-listagem {
+  background-color: #6b12c5 !important;
+}
+
+.botao-editar {
+  background-color: #ffabf3 !important;
+  color: #773e6f !important;
+}
+
+.botao-excluir {
+  background-color: #ffa8a8 !important;
+  color: #6f4b4b !important;
+}

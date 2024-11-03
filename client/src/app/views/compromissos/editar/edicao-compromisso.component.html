@@ -1,0 +1,144 @@
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Edição de Compromisso</h1>
+
+      <hr />
+
+      <form [formGroup]="form" (submit)="gravar()">
+        <mat-form-field class="w-100 mt-5" appearance="fill">
+          <mat-label>Assunto</mat-label>
+          <input
+            matInput
+            data-cy="assunto"
+            formControlName="assunto"
+            autocomplete="off"
+            placeholder="Ex: Reunião"
+          />
+          <mat-icon matSuffix color="primary">event</mat-icon>
+          <mat-error class="text-white" *ngIf="assunto?.invalid">
+            <span *ngIf="assunto?.errors?.['required']"
+              >O assunto precisa ser preenchido.</span
+            >
+            <span *ngIf="assunto?.errors?.['minlength']"
+              >O assunto deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Tipo de Local</mat-label>
+          <mat-select
+            data-cy="tipoLocal"
+            formControlName="tipoLocal"
+            placeholder="Selecione o tipo de local"
+          >
+            <mat-option *ngFor="let opcao of opcoesLocal; index as i" [value]="i">
+              {{ opcao }}
+            </mat-option>
+          </mat-select>
+          <mat-error class="text-white" *ngIf="tipoLocal?.invalid">
+            O tipo de local precisa ser selecionado.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Local</mat-label>
+          <input
+            matInput
+            data-cy="local"
+            formControlName="local"
+            autocomplete="off"
+            placeholder="Ex: Sala de Reunião"
+          />
+          <mat-icon matSuffix color="primary">location_on</mat-icon>
+          <mat-error class="text-white" *ngIf="local?.invalid">
+            O local precisa ser preenchido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Link</mat-label>
+          <input
+            matInput
+            data-cy="link"
+            formControlName="link"
+            autocomplete="off"
+            placeholder="Ex: https://meet.google.com"
+          />
+          <mat-icon matSuffix color="primary">link</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Data</mat-label>
+          <input
+            matInput
+            data-cy="data"
+            formControlName="data"
+            type="date"
+            aria-label="Data do Compromisso"
+          />
+          <mat-icon matSuffix color="primary">calendar_today</mat-icon>
+          <mat-error class="text-white" *ngIf="data?.invalid">
+            A data precisa ser preenchida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Hora de Início</mat-label>
+          <input
+            matInput
+            data-cy="horaInicio"
+            formControlName="horaInicio"
+            type="time"
+            placeholder="Ex: 18:00"
+          />
+          <mat-icon matSuffix color="primary">schedule</mat-icon>
+          <mat-error class="text-white" *ngIf="horaInicio?.invalid">
+            A hora de início precisa ser preenchida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Hora de Término</mat-label>
+          <input
+            matInput
+            data-cy="horaTermino"
+            formControlName="horaTermino"
+            type="time"
+            placeholder="Ex: 21:00"
+          />
+          <mat-icon matSuffix color="primary">schedule</mat-icon>
+          <mat-error class="text-white" *ngIf="horaTermino?.invalid">
+            A hora de término precisa ser preenchida.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Contato</mat-label>
+          <mat-select data-cy="contatoId" formControlName="contatoId">
+            <mat-option *ngFor="let contato of contatos" [value]="contato.id">
+              {{ contato.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="row justify-content-end g-2 gap-2 mt-3">
+          <button type="submit" mat-flat-button class="col-sm-4">
+            <mat-icon matIconPrefix>check</mat-icon>
+            Gravar
+          </button>
+          <a
+            mat-button
+            type="button"
+            class="col-sm-4"
+            routerLink="/compromissos/listar"
+          >
+            <mat-icon matIconPrefix>keyboard_return</mat-icon>
+            Voltar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

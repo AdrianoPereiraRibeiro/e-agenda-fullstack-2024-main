@@ -1,0 +1,78 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="usuarioAutenticado != undefined && (isHandset$ | async) === false"
+  >
+    <mat-toolbar>
+      <span class="d-flex align-items-center gap-2">
+        <mat-icon>note_alt</mat-icon>
+        e-Agenda
+      </span>
+    </mat-toolbar>
+
+    <mat-nav-list class="auth-nav-list" *ngIf="usuarioAutenticado">
+      <a
+        [matMenuTriggerFor]="menu"
+        mat-list-item
+        class="auth-trigger-menu-opcoes"
+      >
+        <mat-icon matListItemIcon>verified_user</mat-icon>
+        {{ usuarioAutenticado.nome }}
+      </a>
+
+      <mat-menu #menu class="auth-menu-opcoes">
+        <button
+          mat-menu-item
+          data-cy="logout"
+          class="auth-menu-item"
+          (click)="logoutAcionado()"
+        >
+          <mat-icon matListItemIcon>logout</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <ng-container *ngIf="usuarioAutenticado">
+        <a
+          *ngFor="let link of authLinks"
+          mat-list-item
+          [routerLink]="link.rota"
+        >
+          <mat-icon matListItemIcon>{{ link.icone }}</mat-icon>
+          {{ link.titulo }}
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="usuarioAutenticado != undefined">
+      <button
+        *ngIf="isHandset$ | async"
+        mat-icon-button
+        data-cy="ativarNavbar"
+        aria-label="Ativar barra lateral"
+        type="button"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Ícone ativador da barra lateral">menu</mat-icon>
+      </button>
+
+      <span
+        *ngIf="isHandset$ | async"
+        class="d-flex align-items-center gap-2 ms-auto"
+      >
+        <mat-icon>note_alt</mat-icon>
+        e-Agenda
+      </span>
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

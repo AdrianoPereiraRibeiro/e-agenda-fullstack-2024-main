@@ -1,0 +1,73 @@
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Exclusão de Compromisso</h1>
+
+      <hr />
+
+      <mat-card
+        class="card-listagem card-animado mat-mdc-elevation-specific mat-elevation-z3"
+      >
+        <mat-card-header>
+          <mat-card-title>{{ detalhesCompromisso?.assunto }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="d-grid mt-4">
+          <span><strong>Data:</strong> {{ detalhesCompromisso?.data }}</span>
+          <span
+            ><strong>Telefone:</strong>
+            {{ detalhesCompromisso?.horaInicio }}</span
+          >
+          <span
+            ><strong>Empresa:</strong>
+            {{ detalhesCompromisso?.horaTermino }}</span
+          >
+          <span
+            ><strong>Tipo de Compromisso:</strong>
+            {{
+              detalhesCompromisso?.tipoLocal == 0 ? "Remoto" : "Presencial"
+            }}</span
+          >
+          <span
+            ><strong>Local/Link:</strong>
+            {{
+              detalhesCompromisso?.tipoLocal == 0
+                ? detalhesCompromisso?.link
+                : detalhesCompromisso?.local
+            }}</span
+          >
+          <span
+            ><strong>Contato:</strong>
+            {{ detalhesCompromisso?.contato?.nome }}</span
+          >
+        </mat-card-content>
+      </mat-card>
+
+      <p class="mt-4">
+        Deseja realmente excluir o registro? <strong>Atenção:</strong> Não será
+        possível recuperar estes dados posteriormente.
+      </p>
+
+      <div class="row justify-content-end g-2 gap-2 mt-3">
+        <button
+          mat-flat-button
+          type="button"
+          class="col-sm-4"
+          (click)="excluir()"
+        >
+          <mat-icon matIconPrefix>check</mat-icon>
+          Confirmar
+        </button>
+        <a
+          mat-button
+          type="button"
+          class="col-sm-4"
+          routerLink="/compromissos/listar"
+        >
+          <mat-icon matIconPrefix>keyboard_return</mat-icon>
+          Voltar
+        </a>
+      </div>
+    </div>
+  </div>
+</main>

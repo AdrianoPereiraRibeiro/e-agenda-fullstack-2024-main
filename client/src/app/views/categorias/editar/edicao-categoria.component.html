@@ -1,0 +1,35 @@
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Edição de Categoria</h1>
+      <hr />
+      <form [formGroup]="form" (submit)="gravar()">
+        <mat-form-field class="w-100 mt-5" appearance="fill">
+          <mat-label>Titulo</mat-label>
+          <input
+            matInput
+            data-cy="titulo"
+            formControlName="titulo"
+            autocomplete="off"
+            placeholder="Ex: Mercado"
+          />
+          <mat-icon matSuffix color="primary">title</mat-icon>
+          <mat-error class="text-white" *ngIf="titulo?.invalid">
+            <span *ngIf="titulo?.errors?.['required']">
+              O título precisa ser preenchido.
+            </span>
+            <span *ngIf="titulo?.errors?.['minlength']">
+              O título deve conter ao menos 3 caracteres.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <div class="row justify-content-end g-2 gap-2 mt-3">
+          <button type="submit" mat-flat-button class="col-sm-4">
+            <mat-icon matIconPrefix>check</mat-icon>
+            Gravar
+          </button>
+          <a mat-button type="button" class="col-sm-4" routerLink="/categorias/listar">
+            <mat-icon matIconPrefix>keyboard_return</mat-icon>
+            Voltar
+          </a>
+        </div>

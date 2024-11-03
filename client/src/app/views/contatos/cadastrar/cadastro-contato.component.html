@@ -1,0 +1,131 @@
+<main class="container my-5">
+  <div class="row justify-content-center g-3 mt-2">
+    <div class="col col-md-10 col-lg-6">
+      <h1 class="display-3">Cadastro de Contato</h1>
+
+      <hr />
+
+      <form [formGroup]="form" (submit)="gravar()">
+        <mat-form-field class="w-100 mt-5" appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            data-cy="nome"
+            formControlName="nome"
+            autocomplete="name"
+            placeholder="Ex: João da Silva"
+            [maxLength]="30"
+          />
+          <mat-icon matSuffix color="primary">person</mat-icon>
+          <mat-error class="text-white" *ngIf="nome?.invalid">
+            <span *ngIf="nome?.errors?.['required']"
+              >O nome precisa ser preenchido.</span
+            >
+            <span *ngIf="nome?.errors?.['minlength']"
+              >O nome deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            data-cy="email"
+            formControlName="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Ex: joaosilva@gmail.com"
+          />
+          <mat-icon matSuffix color="primary">mail</mat-icon>
+          <mat-error class="text-white" *ngIf="email?.invalid">
+            <span *ngIf="email?.errors?.['required']"
+              >O email precisa ser preenchido.</span
+            >
+            <span *ngIf="email?.errors?.['email']"
+              >O valor informado não segue um padrão de email.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            data-cy="telefone"
+            formControlName="telefone"
+            autocomplete="tel-national"
+            placeholder="Ex: (00) 90000-0000"
+          />
+          <mat-icon matSuffix color="primary">phone</mat-icon>
+          <mat-error class="text-white" *ngIf="telefone?.invalid">
+            <span *ngIf="telefone?.errors?.['required']"
+              >O telefone precisa ser preenchido.</span
+            >
+            <span *ngIf="telefone?.errors?.['pattern']"
+              >O valor informado não segue o padrão (00) 90000-0000.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Empresa</mat-label>
+          <input
+            matInput
+            data-cy="empresa"
+            formControlName="empresa"
+            autocomplete="organization"
+            placeholder="Ex: Academia do Programador"
+            [maxLength]="30"
+          />
+          <mat-icon matSuffix color="primary">corporate_fare</mat-icon>
+          <mat-error class="text-white" *ngIf="empresa?.invalid">
+            <span *ngIf="empresa?.errors?.['required']"
+              >A empresa precisa ser preenchida.</span
+            >
+            <span *ngIf="empresa?.errors?.['minlength']"
+              >A empresa deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mt-3" appearance="fill">
+          <mat-label>Cargo</mat-label>
+          <input
+            matInput
+            data-cy="cargo"
+            formControlName="cargo"
+            autocomplete="organization-title"
+            placeholder="Ex: Professor"
+            [maxLength]="30"
+          />
+          <mat-icon matSuffix color="primary">work</mat-icon>
+          <mat-error class="text-white" *ngIf="cargo?.invalid">
+            <span *ngIf="cargo?.errors?.['required']"
+              >O cargo precisa ser preenchido.</span
+            >
+            <span *ngIf="cargo?.errors?.['minlength']"
+              >O cargo deve conter ao menos 3 caracteres.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <div class="row justify-content-end g-2 gap-2 mt-3">
+          <button type="submit" mat-flat-button class="col-sm-4">
+            <mat-icon matIconPrefix>check</mat-icon>
+            Gravar
+          </button>
+          <a
+            mat-button
+            type="button"
+            class="col-sm-4"
+            routerLink="/contatos/listar"
+          >
+            <mat-icon matIconPrefix>keyboard_return</mat-icon>
+            Voltar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
